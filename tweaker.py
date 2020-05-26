@@ -1,6 +1,6 @@
-data_file = open('/home/jyotirmaya/ws/mlops1/data.txt','r')
-input_file = open('/home/jyotirmaya/ws/mlops1/input.txt','r')
-accuracy_file = open('/home/jyotirmaya/ws/mlops1/accuracy.txt','r')
+data_file = open('/home/project/data.txt','r')
+input_file = open('/home/project/input.txt','r')
+accuracy_file = open('/home/project/accuracy.txt','r')
 
 data = data_file.read()
 data = data.split('\n')
@@ -28,14 +28,14 @@ if new_accuracy > old_accuracy and new_accuracy - old_accuracy >= 0.00001 :
 		else :
 			entered_data += 1			  #leaving the number of filters in convolve layer , rest all data in the convolve layer namely strides and pool size to be incrmented by 1 only
 	else :
-		entered_data += 100				  #the dense layer neurons to be incremented by 100				
-	inputs[line] = str(entered_data)	  #updating the input file with the changes							
+		entered_data += 100				 			
+	inputs[line] = str(entered_data)	 				
 
 else:
-	#The data we modified reduced frequency and so we want to make amendments
-	if layer == 1 :	#convolve layer
-		if cp_line == 1 :	#here number of filters are input
-			if entered_data//2 == old_data : #This condition being true implies that the addition of an extra convolution layer was not that too fruitful and so its better to remove the extra convolution layer
+
+	if layer == 1 :
+		if cp_line == 1 :	
+			if entered_data//2 == old_data :
 								inputs = inputs[0:line]
 				#Implementing Step 2
 				inputs.append('1') 						#Now there shall be one fully connected layer
@@ -89,8 +89,8 @@ data_file.close()
 input_file.close()
 
 #opening both the files in write mode
-data_file = open('/home/jyotirmaya/ws/mlops1/data.txt','w')
-input_file = open('/home/jyotirmaya/ws/mlops1/input.txt','w')
+data_file = open('/home/project/data.txt','w')
+input_file = open('/home/project/input.txt','w')
 
 data_file_data = str(old_accuracy) + '\n' + str(layer) + '\n' + str(line) + '\n' + str(entered_data) + '\n' + str(old_data) + '\n' + str(index_fc)
 
